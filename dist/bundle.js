@@ -66,7 +66,6 @@
 	        }, 1);
 	    },
 	    stopTimer: function stopTimer() {
-	        console.log(duration);
 	        duration = 0;
 	        clearInterval(timerInt);
 	    }
@@ -76,6 +75,10 @@
 	function showRecordings() {
 	    var audioCont = document.getElementById("recordings");
 	    audioCont.innerHTML = "";
+	    console.log(recordingArr);
+	    if (!recordingArr[0].audio.length) {
+	        return;
+	    }
 	    for (var i = 0; i < recordingArr.length; i++) {
 	        var button = document.createElement("button");
 	        button.textContent = "Play Audio #" + (i + 1);
@@ -91,7 +94,6 @@
 	    var ele = e.target;
 	    id = e.target.getAttribute("id");
 	    intervals(id);
-	    console.log(recordingArr);
 	}
 
 	//Manage intervals
@@ -129,7 +131,6 @@
 	            recorder.timer();
 	            recorder.soundsArr.push(audio);
 	        }
-	        console.log(recorder.durationArr, recorder.soundsArr);
 	        audio.currentTime = 0;
 	        audio.pause();
 	        audio.play();
