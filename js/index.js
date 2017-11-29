@@ -18,7 +18,6 @@ let recorder = {
         }, 1);
     },
     stopTimer: () => {
-        console.log(duration)
         duration = 0;
         clearInterval(timerInt);
     }
@@ -28,6 +27,10 @@ let recorder = {
 function showRecordings() {
     let audioCont = document.getElementById("recordings");
     audioCont.innerHTML = "";
+    console.log(recordingArr)
+    if (!recordingArr[0].audio.length) {
+        return;
+    }
     for (let i = 0; i < recordingArr.length; i++) {
         let button = document.createElement("button");
         button.textContent = "Play Audio #" + (i + 1);
@@ -43,7 +46,6 @@ function playAudio(e) {
     let ele = e.target;
     id = e.target.getAttribute("id");
     intervals(id);
-    console.log(recordingArr)
 }
 
 //Manage intervals
